@@ -334,7 +334,7 @@ html, body { overflow-x: hidden; }
         <div class="glow-border h-full bg-surface-elevated rounded-2xl p-6 md:p-8 flex flex-col justify-between shadow-2xl">
           <div>
             <div class="eyebrow text-silver mb-1">Tu equipo sugerido</div>
-            <div class="flex items-baseline gap-3 mb-5"><span id="calc-model" class="display-title text-5xl text-accent">16 kVA</span><span id="calc-cap" class="text-sm text-silver"></span></div>
+            <div class="mb-5"><span id="calc-model" class="display-title text-5xl text-accent block">16 kVA</span><span id="calc-cap" class="text-sm text-silver block mt-1"></span></div>
             <div class="bg-background p-4 rounded-xl border border-border mb-4">
               <div class="flex justify-between text-xs text-silver mb-2"><span>Consumo simultáneo estimado</span><span id="calc-amps" class="font-bold text-white">0 A</span></div>
               <div class="w-full h-4 bg-surface-high rounded-full overflow-hidden p-0.5"><div id="calc-bar" class="h-full bg-whatsapp rounded-full transition-all duration-300" style="width:0%"></div></div>
@@ -342,10 +342,10 @@ html, body { overflow-x: hidden; }
             </div>
             <div class="p-3 rounded-xl bg-surface border border-border flex items-center gap-3 mb-4">
               <span class="material-symbols-outlined text-whatsapp">energy_savings_leaf</span>
-              <div><div id="calc-free" class="font-bold">Te quedan ~0 A libres</div><div class="text-xs text-text-secondary">Margen para sumar artefactos en el futuro.</div></div>
+              <div><div id="calc-free" class="font-bold">Te quedan ~0 A libres</div><div id="calc-free-sub" class="text-xs text-text-secondary">Margen para sumar artefactos en el futuro.</div></div>
             </div>
           </div>
-          <a id="calc-wa" href="#" target="_blank" rel="noopener" class="w-full inline-flex items-center justify-center gap-2 bg-whatsapp text-black font-bold py-3.5 rounded-xl"><span class="material-symbols-outlined">chat</span>Consultá este equipo por WhatsApp</a>
+          <a id="calc-wa" href="#" target="_blank" rel="noopener" class="w-full flex items-center justify-center text-center gap-2 bg-whatsapp text-black font-bold py-3.5 px-4 rounded-xl"><span class="material-symbols-outlined">chat</span><span>Consultar por WhatsApp</span></a>
         </div>
       </div>
     </div>
@@ -957,7 +957,7 @@ html, body { overflow-x: hidden; }
 /* Google Analytics 4
    Pegá tu ID de medición (empieza con "G-") entre las comillas.
    Mientras esté vacío, no se carga nada. */
-window.MA_GA_ID = "";
+window.MA_GA_ID = "G-9QQGJ3EWHC";
 
 (function () {
   var id = window.MA_GA_ID;
@@ -1197,17 +1197,19 @@ window.MA_RESENAS = [
     var pct, msg;
     if (r) {
       $('calc-model').textContent = r.kva;
-      $('calc-cap').textContent = '(' + r.cap + ' A constantes)';
+      $('calc-cap').textContent = r.cap + ' A constantes';
       $('calc-max').textContent = r.cap + ' A';
       pct = Math.min(100, Math.round(est / r.cap * 100));
       $('calc-free').textContent = 'Te quedan ~' + (r.cap - est) + ' A libres para el futuro';
+      $('calc-free-sub').textContent = 'Margen para sumar artefactos en el futuro.';
       msg = 'Hola, usé la calculadora de la web: ' + (lista.join(', ') || 'sin artefactos') + ' (~' + est + ' A). Me recomienda el equipo de ' + r.kva + '.';
     } else {
-      $('calc-model').textContent = 'Consultanos';
-      $('calc-cap').textContent = '(línea industrial 30/35 kVA)';
+      $('calc-model').textContent = 'A medida';
+      $('calc-cap').textContent = 'Línea industrial 30 / 35 kVA';
       $('calc-max').textContent = '80 A+';
       pct = 100;
       $('calc-free').textContent = 'Tu consumo necesita un equipo a medida';
+      $('calc-free-sub').textContent = 'Te asesoramos por WhatsApp sin compromiso.';
       msg = 'Hola, usé la calculadora de la web: ' + lista.join(', ') + ' (~' + est + ' A). Necesito asesoramiento para un equipo más grande.';
     }
     $('calc-amps').textContent = est + ' A';

@@ -1295,5 +1295,11 @@ window.MA_RESENAS = [
     if(t) setTimeout(function(){t.scrollIntoView({behavior:'smooth'});},30); else window.scrollTo(0,0);
     document.getElementById('assist-panel').classList.add('hidden');
   }
-  window.addEventListener('hashchange',go); go();
+  window.addEventListener('hashchange',go);
+  // Si el link lleva al mismo lugar donde ya estás (ej. tocar "Calculadora" dos veces), igual hace scroll
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#/"]'); if(!a) return;
+    if(a.getAttribute('href')===location.hash){ e.preventDefault(); go(); }
+  });
+  go();
 })();</script></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="dark" lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html class="dark" lang="es"><head><meta charset="utf-8"><meta name="ma-version" content="v2026-09-30"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estabilizadores de tensión para toda la casa | M.A Electrics</title>
 <meta name="description" content="Estabilizadores y elevadores de tensión automáticos fabricados en Argentina. 10 años de garantía, envíos a todo el país y retiro en Longchamps.">
 <meta property="og:title" content="Estabilizadores de tensión para toda la casa | M.A Electrics">
@@ -692,9 +692,9 @@ html, body { overflow-x: hidden; }
     <section class="lg:col-span-6 flex flex-col gap-3">
       <div class="bg-surface-elevated border border-border rounded-2xl overflow-hidden"><img id="main-img" src="" data-img="equipo-frente-h.jpg" alt="Estabilizador de tensión M.A Electrics de 16 kVA, gabinete blanco" class="w-full aspect-[4/3] object-cover transition-opacity duration-200"></div>
       <div class="grid grid-cols-3 gap-3">
-        <button type="button" class="thumb opt-btn active rounded-xl overflow-hidden h-24" data-src="" data-img="equipo-frente-h.jpg"><img src="" data-img="equipo-frente-h.jpg" alt="Estabilizador de tensión M.A Electrics de 16 kVA" class="w-full h-full object-cover"></button>
-        <button type="button" class="thumb opt-btn rounded-xl overflow-hidden h-24" data-src="" data-img="equipo-blanco-h.jpg"><img src="" data-img="equipo-blanco-h.jpg" alt="Estabilizador de tensión automático con llave térmica integrada" class="w-full h-full object-cover"></button>
-        <button type="button" class="thumb opt-btn rounded-xl overflow-hidden h-24" data-src="" data-img="equipo-trasera.jpg"><img src="" data-img="equipo-trasera.jpg" alt="Conexiones de entrada y salida del elevador de tensión" class="w-full h-full object-cover"></button>
+        <button type="button" class="thumb opt-btn active rounded-xl overflow-hidden h-24" data-src="" data-srcimg="equipo-frente-h.jpg"><img src="" data-img="equipo-frente-h.jpg" alt="Estabilizador de tensión M.A Electrics de 16 kVA" class="w-full h-full object-cover"></button>
+        <button type="button" class="thumb opt-btn rounded-xl overflow-hidden h-24" data-src="" data-srcimg="equipo-blanco-h.jpg"><img src="" data-img="equipo-blanco-h.jpg" alt="Estabilizador de tensión automático con llave térmica integrada" class="w-full h-full object-cover"></button>
+        <button type="button" class="thumb opt-btn rounded-xl overflow-hidden h-24" data-src="" data-srcimg="equipo-trasera.jpg"><img src="" data-img="equipo-trasera.jpg" alt="Conexiones de entrada y salida del elevador de tensión" class="w-full h-full object-cover"></button>
       </div>
     </section>
 
@@ -1115,13 +1115,13 @@ window.MA_RESENAS = [
   var els = document.querySelectorAll('[data-count]'); if (!els.length) return;
   var fmt = function (n) { return n.toLocaleString('es-AR'); };
   function run(el) {
-    var fin = parseInt(el.dataset.count, 10), t0 = null, dur = 1400;
+    var fin = parseInt(el.dataset.count, 10), t0 = null, dur = 3200;
     function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / dur); el.textContent = fmt(Math.round(fin * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(step); }
     requestAnimationFrame(step);
   }
   if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   els.forEach(function (el) { el.textContent = '0'; });
-  var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { run(x.target); io.unobserve(x.target); } }); }, { threshold: 0.6 });
+  var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { run(x.target); io.unobserve(x.target); } }); }, { threshold: 0.9 });
   els.forEach(function (el) { io.observe(el); });
 })();
 
@@ -1284,6 +1284,7 @@ window.MA_RESENAS = [
 
 (function(){
   document.querySelectorAll('[data-img]').forEach(function(i){i.src=MA_IMG[i.dataset.img];});
+  document.querySelectorAll('[data-srcimg]').forEach(function(t){t.dataset.src=MA_IMG[t.dataset.srcimg];});
   var navMap={equipos:'equipos',producto:'equipos',servicio:'servicio',preguntas:'preguntas'};
   function go(){
     var h=location.hash||'#/home'; if(h.indexOf('#/')!==0) return;

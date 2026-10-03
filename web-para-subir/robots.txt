@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ma-electrics.vercel.app/sitemap.xml

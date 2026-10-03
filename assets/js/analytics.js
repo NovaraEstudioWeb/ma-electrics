@@ -7,11 +7,8 @@ window.MA_GA_ID = "G-9QQGJ3EWHC";
   var id = window.MA_GA_ID;
   window.maTrack = function () {};
   if (!id) return;
-  var s = document.createElement('script'); s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id; document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { dataLayer.push(arguments); };
-  gtag('js', new Date()); gtag('config', id);
+  // La etiqueta de Google ya está en el <head> de cada página; acá solo se registran los clics.
+  if (typeof window.gtag !== 'function') return;
   window.maTrack = function (evento, datos) { gtag('event', evento, datos || {}); };
   // Clics importantes: WhatsApp, email, "Ver detalle", teléfono
   document.addEventListener('click', function (e) {
